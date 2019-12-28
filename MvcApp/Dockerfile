@@ -1,9 +1,9 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:2.1-stretch-slim AS base
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-stretch-slim AS base
 WORKDIR /app
 EXPOSE 3317
 EXPOSE 80
 
-FROM mcr.microsoft.com/dotnet/core/sdk:2.1-stretch AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-stretch AS build
 WORKDIR /src
 COPY ["/MvcApp.csproj", "MvcApp/"]
 RUN dotnet restore "MvcApp/MvcApp.csproj"
