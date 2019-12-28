@@ -12,9 +12,9 @@ WORKDIR "/src"
 RUN dotnet build "MvcApp.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "MvcApp.csproj" -c Release -o /app/publish
+RUN dotnet publish "MvcApp.csproj" -c Release -o /app 
 
 FROM base AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=publish /app .
 ENTRYPOINT ["dotnet", "MvcApp.dll"]
