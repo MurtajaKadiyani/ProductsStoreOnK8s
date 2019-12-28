@@ -9,10 +9,10 @@ COPY ["/MvcApp.csproj", "MvcApp/"]
 RUN dotnet restore "MvcApp/MvcApp.csproj"
 COPY . .
 WORKDIR "/src"
-RUN dotnet build "MvcApp.csproj" -c Release -o /app/build
+RUN dotnet build "MvcApp.csproj" -c Release -o /app/build --no-restore
 
 FROM build AS publish
-RUN dotnet publish "MvcApp.csproj" -c Release -o /app 
+RUN dotnet publish "MvcApp.csproj" -c Release -o /app --no-restore
 
 FROM base AS final
 WORKDIR /app
